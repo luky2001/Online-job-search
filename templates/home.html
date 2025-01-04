@@ -1,0 +1,36 @@
+ {% extends "base.html" %}
+ {% block start %}
+ <a href="/about/">About
+ </a>
+ 	<div class="container mt-5">
+        <table class="table table-striped table-bordered table-hover">
+            <thead class="table-dark">
+                <tr>
+                    <th>Sr No.</th>
+                    <th>Name</th>
+                    <th>Age</th>
+                    <th>Village</th>
+                    <th>Vote (can or not)</th>
+                </tr>
+            </thead>
+            <tbody>
+            	{% for i in people %}
+                <tr>
+                    <td>{{forloop.counter}}</td>
+                    <td>{{i.name}}</td>
+                    <td>{{i.age}}</td>
+                    <td>{{i.vill}}</td>
+                    <td >
+                    	{% if i.age >= 18 %}
+                        <h6 style="color: blue;"> Yes</h6>
+                        {% else %}
+                        <h6 style="color:red;"> No </h6>
+                        {% endif %}
+                          
+                    </td>
+                        
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+   {% endblock %}
