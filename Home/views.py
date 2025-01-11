@@ -25,4 +25,4 @@ def home(request):
 
     return render(request, 'student.html', context)
 
-def
+def delete
