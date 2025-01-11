@@ -24,3 +24,5 @@ def home(request):
     context = {'student': queryset}
 
     return render(request, 'student.html', context)
+
+def
