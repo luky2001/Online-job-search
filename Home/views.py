@@ -25,29 +25,21 @@ def show(request):
     #return redirect('/show/')
     return render(request,'show.html',context)
 def update(request, id):
-    queryset = Student.objects.get(id=id)  # Retrieve the student object
+    queryset = Student.objects.get(id=id)  
     if request.method == "POST":
         data = request.POST
-        stu_image = request.FILES.get('student_image')  # Get the new image (if provided)
-        stu_name = data.get('student_name')  # Get the new name
-        stu_age = data.get('student_age')  # Get the new age
-        stu_address = data.get('student_address')  # Get the new address
-
-        # Update the student fields
+        stu_image = request.FILES.get('student_image')  
+        stu_name = data.get('student_name')  
+        stu_age = data.get('student_age')  
+        stu_address = data.get('student_address')  
         queryset.name = stu_name
         queryset.age = stu_age
         queryset.address = stu_address
-
-        # Update the image only if a new image is provided
         if stu_image:
             queryset.image = stu_image
-
-        # Save the updated student object
         queryset.save()
-
-        # Redirect to the show page after updating
         return redirect('/show/')
-
-    # Pass the current student data to the template for editing
     context = {'student': queryset}
     return render(request, 'update.html', context)
+
+def
