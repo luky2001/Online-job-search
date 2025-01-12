@@ -6,7 +6,7 @@
         <!-- Form Card -->
         <div class="card shadow-sm">
           <div class="card-header bg-primary text-white text-center">
-            <h3>Student Details Form</h3>
+            <h3>Student Update Form</h3>
           </div>
           <div class="card-body">
             <form  method="POST" enctype="multipart/form-data">
@@ -14,30 +14,30 @@
               {% csrf_token %}
               <div class="mb-3">
                 <label for="name" class="form-label">Name</label>
-                <input type="text" class="form-control" id="name" name="student_name" placeholder="Enter student's name" required>
+                <input type="text" class="form-control" id="name" value="{{student.name}}" name="student_name" placeholder="Enter student's name" required>
               </div>
 
               <!-- Age -->
               <div class="mb-3">
                 <label for="age" class="form-label">Age</label>
-                <input type="number" class="form-control" id="age" name="student_age" placeholder="Enter student's age" min="1" required>
+                <input type="number" class="form-control" id="age" value="{{student.age}}" name="student_age" placeholder="Enter student's age" min="1" required>
               </div>
 
               <!-- Address -->
               <div class="mb-3">
                 <label for="address" class="form-label">Address</label>
-                <textarea class="form-control" id="address" name="student_address" rows="3" placeholder="Enter student's address" required></textarea>
+                <textarea class="form-control" id="address" name="student_address" rows="3" placeholder="Enter student's address" required>{{student.address}}</textarea>
               </div>
 
               <!-- Image Upload -->
               <div class="mb-3">
                 <label for="image" class="form-label">Upload Image</label>
-                <input type="file" class="form-control" id="image" name="student_image" accept="image/*" required>
+                <input type="file" class="form-control" value="{{student.image}}" id="image" name="student_image" accept="image/*" >
               </div>
 
               <!-- Submit Button -->
               <div class="text-center">
-                <button type="submit" class="btn btn-success w-100">Submit</button>
+                <button type="submit" class="btn btn-success w-100">Update</button>
               </div>
             </form>
           </div>
@@ -45,15 +45,5 @@
       </div>
     </div>
   </div>
-  
-  </div>
-
-
-
-
-
-
-
-
-
+ 
 {% endblock %}
