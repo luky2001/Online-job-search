@@ -14,6 +14,7 @@ def home(request):
             image=stu_image  
         )
         return redirect('/show/')
+
     return render(request, 'student.html')
 def delete(request,id):
     queryset=Student.objects.get( id=id)
@@ -21,8 +22,10 @@ def delete(request,id):
     return redirect('/show/')
 def show(request):
     queryset=Student.objects.all()
-    context={'student':queryset}
-    #return redirect('/show/')
+    if request.GET.get('search'):
+        print(request.GET.get('search'))
+        queryset=queryset.filter(name__icontains=request.GET.get('search'))
+        context={'student':queryset}
     return render(request,'show.html',context)
 def update(request, id):
     queryset = Student.objects.get(id=id)  
@@ -42,4 +45,4 @@ def update(request, id):
     context = {'student': queryset}
     return render(request, 'update.html', context)
 
-def profile
+
