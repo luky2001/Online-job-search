@@ -45,4 +45,6 @@ def update(request, id):
     context = {'student': queryset}
     return render(request, 'update.html', context)
 
-def profile(request)
+def customer
+
+
