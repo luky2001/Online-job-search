@@ -90,4 +90,4 @@ def register(request):
         return redirect('/register/')
     return render(request,'register.html')
 
-def
+def pro()
