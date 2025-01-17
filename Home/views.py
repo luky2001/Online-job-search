@@ -4,6 +4,7 @@ from django.contrib import messages
 from django.contrib.auth import authenticate ,login,logout
 from django.contrib.auth.decorators import login_required
 
+
 def home(request):
     if request.method == "POST":
         data = request.POST
@@ -24,6 +25,8 @@ def delete(request,id):
     queryset=Student.objects.get( id=id)
     queryset.delete()
     return redirect('/show/')
+    
+@login_required(login_url="/login/")
 def show(request):
     queryset = Student.objects.all()  # Get all students
     if request.GET.get('search'):
@@ -90,4 +93,3 @@ def register(request):
         return redirect('/register/')
     return render(request,'register.html')
 
-def pro(request)

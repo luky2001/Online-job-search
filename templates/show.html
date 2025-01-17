@@ -1,60 +1,61 @@
 {% extends "base.html" %}
 {% block start %}
- 
-     <div class="container mt-5">
-        <div class="row justify-content-center">
-            <div class="col-md-6">
-                <form class="d-flex" >
-                    <input class="form-control me-2"  name="search" placeholder="Search..." aria-label="Search">
-                    <button class="btn btn-primary" type="submit">Search</button>
-                </form>
-            </div>
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <form class="d-flex" method="GET">
+                {% csrf_token %}
+                <input class="form-control me-2" name="search" placeholder="Search..." aria-label="Search">
+                <button class="btn btn-primary" type="submit">Search</button>
+            </form>
         </div>
     </div>
+</div>
 
-  <div class="container mt-5">
+<div class="container mt-5">
     <h2 class="text-center mb-4">Student Details</h2>
     <table class="table table-bordered table-striped">
-      <thead class="thead-dark">
-        <tr>
-          <th scope="col">S.N</th>
-          <th scope="col">Name</th>
-          <th scope="col">Age</th>
-          <th scope="col">Address</th>
-          <th scope="col">Image</th>
-          <th scope="col">Action</th>
-        </tr>
-      </thead>
-      <tbody>
-        {% for student in student %}
-        <tr>
-          <th scope="row">{{ forloop.counter }}</th>
-          <td>{{ student.name }}</td>
-          <td>{{ student.age }}</td>
-          <td>{{ student.address }}</td>
-          <td>
-            {% if student.image %}
-            <img src="{{ student.image.url }}" alt="Student Image" width="150" height="100">
-
+        <thead class="thead-dark">
+            <tr>
+                <th scope="col">S.N</th>
+                <th scope="col">Name</th>
+                <th scope="col">Age</th>
+                <th scope="col">Address</th>
+                <th scope="col">Image</th>
+                <th scope="col">Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% if student %}
+                {% for student in student %}
+                <tr>
+                    <th scope="row">{{ forloop.counter }}</th>
+                    <td>{{ student.name }}</td>
+                    <td>{{ student.age }}</td>
+                    <td>{{ student.address }}</td>
+                    <td>
+                        {% if student.image %}
+                        <img src="{{ student.image.url }}" alt="Student Image" width="150" height="100">
+                        {% else %}
+                        No Image
+                        {% endif %}
+                    </td>
+                    <td>
+                        <a href="{% url 'update' student.id %}" class="btn btn-sm btn-primary">
+                            <i class="bi bi-pencil"></i> Update
+                        </a>
+                        <a href="{% url 'delete' student.id %}" class="btn btn-sm btn-danger">
+                            <i class="bi bi-trash"></i> Delete
+                        </a>
+                    </td>
+                </tr>
+                {% endfor %}
             {% else %}
-            No Image
+                <tr>
+                    <td colspan="6" class="text-center">No students found.</td>
+                </tr>
             {% endif %}
-          </td>
-          <td>
-          	 <a href="/update/{{student.id}}" class="btn btn-sm btn-primary">
-              <i class="bi bi-trash"></i> Update
-            </a>
-            <a href="/delete/{{student.id}}" class="btn btn-sm btn-danger">
-              <i class="bi bi-trash"></i> Delete
-            </a>
-            
-        </td>
-        </tr>
-        {% endfor %}
-      </tbody>
+        </tbody>
     </table>
-  </div>
-
-
-
+</div>
 {% endblock %}
