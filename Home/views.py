@@ -92,4 +92,4 @@ def register(request):
         messages.info(request,'Account created successfully')
         return redirect('/register/')
     return render(request,'register.html')
-
+def
